@@ -1,0 +1,437 @@
+/* =========================================================================
+   SIMULADOR DE COBERTURA WI-FI
+   Folha de estilos
+   ========================================================================= */
+
+/* ---------- RESET ---------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- VARIÁVEIS ---------- */
+:root {
+    --color-blue: #0B5FFF;
+    --color-blue-dark: #0A1931;
+    --color-gray-light: #F5F7FA;
+    --color-white: #FFFFFF;
+    --color-text: #3A4457;
+    --color-text-light: #7A8494;
+
+    /* Cores do mapa de calor */
+    --signal-excellent: #22C55E;
+    --signal-good: #FACC15;
+    --signal-weak: #FB923C;
+    --signal-veryweak: #EF4444;
+
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --shadow-sm: 0 4px 12px rgba(10, 25, 49, 0.08);
+    --shadow-md: 0 10px 30px rgba(10, 25, 49, 0.12);
+
+    --radius-md: 14px;
+    --radius-lg: 20px;
+
+    --transition: all 0.25s ease;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-gray-light);
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+h1, h2 {
+    font-family: var(--font-heading);
+    color: var(--color-blue-dark);
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ---------- CABEÇALHO ---------- */
+.app-header {
+    background: linear-gradient(160deg, var(--color-blue-dark) 0%, #0d2450 100%);
+    padding: 28px 32px;
+}
+
+.app-header__title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.app-header__icon {
+    font-size: 34px;
+    flex-shrink: 0;
+}
+
+.app-header__title h1 {
+    color: var(--color-white);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.app-header__title p {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* ---------- LAYOUT PRINCIPAL ---------- */
+.app-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+/* ---------- PAINEL LATERAL ---------- */
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 24px;
+}
+
+.panel__group {
+    background-color: var(--color-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 22px;
+}
+
+.panel__title {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.panel__hint {
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-bottom: 16px;
+}
+
+.panel__note {
+    font-size: 12px;
+    color: var(--color-blue);
+    margin-top: 14px;
+    background-color: rgba(11, 95, 255, 0.08);
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: none;
+}
+
+.panel__note.is-visible {
+    display: block;
+}
+
+/* Seletor de dispositivo */
+.device-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.device-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 8px;
+    border-radius: 10px;
+    border: 2px solid var(--color-gray-light);
+    background-color: var(--color-gray-light);
+    transition: var(--transition);
+}
+
+.device-btn__icon {
+    font-size: 22px;
+}
+
+.device-btn__label {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.device-btn:hover {
+    border-color: var(--color-blue);
+    transform: translateY(-2px);
+}
+
+.device-btn.is-active {
+    background-color: var(--color-blue);
+    border-color: var(--color-blue);
+}
+
+.device-btn.is-active .device-btn__label {
+    color: var(--color-white);
+}
+
+/* Especificações do dispositivo ativo */
+.device-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.device-specs li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--color-text-light);
+}
+
+.device-specs strong {
+    color: var(--color-blue-dark);
+    font-family: var(--font-heading);
+    font-size: 13px;
+}
+
+.btn-clear {
+    width: 100%;
+    padding: 11px;
+    border-radius: 8px;
+    background-color: var(--color-blue-dark);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.btn-clear:hover {
+    background-color: #0d2450;
+    transform: translateY(-2px);
+}
+
+/* Legenda de cores */
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.legend li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--color-text);
+}
+
+.legend__swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+.legend__swatch--excellent { background-color: var(--signal-excellent); }
+.legend__swatch--good { background-color: var(--signal-good); }
+.legend__swatch--weak { background-color: var(--signal-weak); }
+.legend__swatch--veryweak { background-color: var(--signal-veryweak); }
+
+/* ---------- ÁREA DA PLANTA ---------- */
+.stage {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.stage__viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 900 / 650;
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.house-svg,
+.heatmap-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.heatmap-canvas {
+    pointer-events: none;
+    /* Suaviza os blocos do mapa de calor, criando um degradê mais orgânico */
+    filter: blur(9px) saturate(1.15);
+    mix-blend-mode: multiply;
+}
+
+/* Piso dos cômodos */
+.room-floor {
+    stroke: none;
+}
+
+.room-floor--sala { fill: #EAF1FF; }
+.room-floor--cozinha { fill: #FFF6E5; }
+.room-floor--quarto1 { fill: #F0FFF4; }
+.room-floor--banheiro { fill: #F2F0FF; }
+.room-floor--quarto2 { fill: #FFF0F5; }
+
+/* Rótulos dos cômodos */
+.labels-layer text {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--color-blue-dark);
+    opacity: 0.55;
+    user-select: none;
+}
+
+/* Paredes (geradas via JavaScript) */
+.wall-line {
+    stroke: var(--color-blue-dark);
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+/* Dispositivos posicionados */
+.device-marker__pulse {
+    fill: none;
+    stroke: var(--color-blue);
+    stroke-width: 2;
+    opacity: 0;
+    animation: devicePulse 2.2s ease-out infinite;
+}
+
+.device-marker__core {
+    fill: var(--color-blue-dark);
+    stroke: var(--color-white);
+    stroke-width: 3;
+}
+
+.device-marker__icon {
+    font-size: 18px;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+}
+
+/* Repetidor sem sinal do Roteador para amplificar */
+.device-marker--inactive {
+    opacity: 0.55;
+}
+
+.device-marker--inactive .device-marker__core {
+    stroke-dasharray: 3 2;
+}
+
+@keyframes devicePulse {
+    0% { r: 14; opacity: 0.6; }
+    100% { r: 46; opacity: 0; }
+}
+
+/* Tooltip de intensidade de sinal */
+.signal-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background-color: var(--color-blue-dark);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transform: translate(-50%, -130%);
+    white-space: nowrap;
+    z-index: 5;
+    box-shadow: var(--shadow-sm);
+}
+
+.stage__hint {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-light);
+}
+
+.stage__warning {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #DC2626;
+    background-color: rgba(220, 38, 38, 0.08);
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+.stage__warning[hidden] {
+    display: none;
+}
+
+/* ---------- RODAPÉ ---------- */
+.app-footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--color-text-light);
+}
+
+/* ---------- RESPONSIVIDADE ---------- */
+@media (max-width: 900px) {
+    .app-main {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .panel__group {
+        flex: 1 1 260px;
+    }
+}
+
+@media (max-width: 560px) {
+    .app-header {
+        padding: 22px 18px;
+    }
+
+    .app-header__title h1 {
+        font-size: 19px;
+    }
+
+    .app-main {
+        padding: 20px 14px;
+    }
+
+    .device-selector {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .device-btn__label {
+        font-size: 10px;
+    }
+}

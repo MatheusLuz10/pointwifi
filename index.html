@@ -15,7 +15,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Matheus Luz | Redes & Informática">
     <meta property="og:description" content="Redes rápidas, estáveis e seguras. Especialista em Wi-Fi, Cabeamento Estruturado e Manutenção de Computadores.">
-    <meta property="og:image" content="img/hero.jpg">
+    <meta property="og:image" content="img/hero.png">
     <meta property="og:url" content="https://matheusluz.com.br/">
     <meta property="og:locale" content="pt_BR">
 
@@ -36,10 +36,10 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Matheus Luz - Redes & Informática",
-        "image": "img/hero.jpg",
+        "image": "img/hero.png",
         "description": "Especialista em Redes de Computadores, Wi-Fi, Cabeamento Estruturado e Manutenção de Computadores.",
         "telephone": "+55-91-98645-6795",
-        "email": "contato@matheusluz.com.br",
+        "email": "787mluz@gmail.com",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Belém",
@@ -58,8 +58,18 @@
     <header class="navbar" id="navbar">
         <div class="container navbar__container">
             <a href="#inicio" class="navbar__logo">
-                <span class="navbar__logo-title">MATHEUS LUZ</span>
-                <span class="navbar__logo-subtitle">Redes &amp; Informática</span>
+                <svg class="navbar__logo-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="17" cy="7" r="3" fill="currentColor"/>
+                    <circle cx="6" cy="26" r="3" fill="currentColor"/>
+                    <circle cx="28" cy="26" r="3" fill="currentColor"/>
+                    <line x1="17" y1="7" x2="6" y2="26" stroke="currentColor" stroke-width="2"/>
+                    <line x1="17" y1="7" x2="28" y2="26" stroke="currentColor" stroke-width="2"/>
+                    <line x1="6" y1="26" x2="28" y2="26" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span class="navbar__logo-text">
+                    <span class="navbar__logo-title">MATHEUS LUZ</span>
+                    <span class="navbar__logo-subtitle">Redes &amp; Informática</span>
+                </span>
             </a>
 
             <nav class="navbar__nav" id="navbar-nav">
@@ -111,7 +121,7 @@
                 </div>
 
                 <div class="hero__media reveal">
-                    <img src="img/hero.jpg" alt="Técnico especialista em redes trabalhando" class="hero__image">
+                    <img src="img/hero.png" alt="Matheus Luz, especialista em redes de computadores" class="hero__image">
                 </div>
             </div>
 
@@ -124,7 +134,7 @@
         <section class="section wifi-explain" id="wifi">
             <div class="container wifi-explain__container">
                 <div class="wifi-explain__media reveal">
-                    <img src="img/wifi-house.jpg" alt="Casa com cobertura de sinal Wi-Fi" class="wifi-explain__image">
+                    <img src="img/wifi-info.png" alt="Ilustração mostrando o caminho do sinal Wi-Fi: da internet ao roteador, aos dispositivos, até perder força pelas paredes" class="wifi-explain__image">
                 </div>
 
                 <div class="wifi-explain__content reveal">
@@ -170,12 +180,12 @@
         </section>
 
         <!-- ===================== 3. ESTRUTURA DE UMA REDE ===================== -->
-        <section class="section section--gray" id="estrutura">
+        <section class="section section--dark" id="estrutura">
             <div class="container structure__container">
                 <div class="structure__content reveal">
-                    <span class="section__tag">Organização é tudo</span>
-                    <h2 class="section__title">Estrutura de uma rede bem planejada</h2>
-                    <p class="section__text">
+                    <span class="section__tag section__tag--light">Organização é tudo</span>
+                    <h2 class="section__title section__title--light">Estrutura de uma rede bem planejada</h2>
+                    <p class="section__text section__text--light">
                         Uma rede organizada, com cada equipamento cumprindo sua função corretamente,
                         garante muito mais desempenho, estabilidade e segurança para o ambiente residencial
                         ou empresarial.
@@ -190,23 +200,7 @@
                 </div>
 
                 <div class="structure__diagram reveal">
-                    <div class="diagram__node">Internet</div>
-                    <div class="diagram__arrow">↓</div>
-                    <div class="diagram__node">ONU</div>
-                    <div class="diagram__arrow">↓</div>
-                    <div class="diagram__node">Roteador</div>
-                    <div class="diagram__arrow">↓</div>
-                    <div class="diagram__node">Switch</div>
-                    <div class="diagram__arrow">↓</div>
-                    <div class="diagram__node diagram__node--highlight">Access Point</div>
-                    <div class="diagram__arrow">↓</div>
-                    <div class="diagram__endpoints">
-                        <span>Computadores</span>
-                        <span>TV</span>
-                        <span>Notebook</span>
-                        <span>Celulares</span>
-                        <span>Câmeras</span>
-                    </div>
+                    <img src="img/estrutura-rede.png" alt="Corte 3D de uma casa mostrando ONU, roteador, switch e access points distribuindo a rede pelos cômodos" class="structure__image">
                 </div>
             </div>
         </section>
@@ -226,7 +220,7 @@
 
                     <article class="compare-card reveal">
                         <div class="compare-card__image">
-                            <img src="img/roteador.jpg" alt="Cabeamento de rede estruturado">
+                            <img src="img/card-cabeamento.png" alt="Cabeamento de rede estruturado distribuído pelos cômodos da casa">
                         </div>
                         <div class="compare-card__icon">🔌</div>
                         <h3 class="compare-card__title">Cabeamento</h3>
@@ -236,12 +230,12 @@
                             <li>Mais estabilidade</li>
                             <li>Ideal para computadores, TVs e videogames</li>
                         </ul>
-                        <a href="#servicos" class="btn btn--outline compare-card__btn">Saiba Mais</a>
+                        <button type="button" class="btn btn--outline compare-card__btn" data-modal-target="cabeamento">Saiba Mais</button>
                     </article>
 
                     <article class="compare-card reveal">
                         <div class="compare-card__image">
-                            <img src="img/access-point.jpg" alt="Repetidor de sinal Wi-Fi">
+                            <img src="img/card-repetidor.png" alt="Repetidor de sinal Wi-Fi ampliando a cobertura pela casa">
                         </div>
                         <div class="compare-card__icon">📶</div>
                         <h3 class="compare-card__title">Repetidor</h3>
@@ -250,12 +244,12 @@
                             <li>Pode reduzir velocidade</li>
                             <li>Indicado para pequenos ambientes</li>
                         </ul>
-                        <a href="#servicos" class="btn btn--outline compare-card__btn">Saiba Mais</a>
+                        <button type="button" class="btn btn--outline compare-card__btn" data-modal-target="repetidor">Saiba Mais</button>
                     </article>
 
                     <article class="compare-card reveal">
                         <div class="compare-card__image">
-                            <img src="img/access-point.jpg" alt="Access Point profissional">
+                            <img src="img/card-access-point.png" alt="Access Point profissional instalado na parede">
                         </div>
                         <div class="compare-card__icon">📡</div>
                         <h3 class="compare-card__title">Access Point</h3>
@@ -265,12 +259,12 @@
                             <li>Muito mais estável</li>
                             <li>Ideal para empresas</li>
                         </ul>
-                        <a href="#servicos" class="btn btn--outline compare-card__btn">Saiba Mais</a>
+                        <button type="button" class="btn btn--outline compare-card__btn" data-modal-target="access-point">Saiba Mais</button>
                     </article>
 
                     <article class="compare-card reveal">
                         <div class="compare-card__image">
-                            <img src="img/mesh.jpg" alt="Sistema de rede Mesh">
+                            <img src="img/card-mesh.png" alt="Sistema de rede Mesh cobrindo toda a casa com múltiplos pontos">
                         </div>
                         <div class="compare-card__icon">🛰️</div>
                         <h3 class="compare-card__title">Mesh</h3>
@@ -280,7 +274,7 @@
                             <li>Troca automática entre pontos</li>
                             <li>Ideal para casas grandes</li>
                         </ul>
-                        <a href="#servicos" class="btn btn--outline compare-card__btn">Saiba Mais</a>
+                        <button type="button" class="btn btn--outline compare-card__btn" data-modal-target="mesh">Saiba Mais</button>
                     </article>
 
                 </div>
@@ -378,7 +372,7 @@
         <section class="section specialist">
             <div class="container specialist__container">
                 <div class="specialist__media reveal">
-                    <img src="img/tecnico-rack.jpg" alt="Técnico especialista trabalhando em rack de rede" class="specialist__image">
+                    <img src="img/especialista.png" alt="Técnico especialista em redes cercado por indicadores de desempenho, segurança e cobertura Wi-Fi" class="specialist__image">
                 </div>
 
                 <div class="specialist__content reveal">
@@ -406,12 +400,12 @@
         </section>
 
         <!-- ===================== 7. COMO FUNCIONA O ATENDIMENTO ===================== -->
-        <section class="section section--gray" id="atendimento">
+        <section class="section section--dark" id="atendimento">
             <div class="container">
                 <div class="section__header reveal">
-                    <span class="section__tag">Processo</span>
-                    <h2 class="section__title">Como funciona o atendimento</h2>
-                    <p class="section__text">Um processo simples, transparente e profissional do início ao fim.</p>
+                    <span class="section__tag section__tag--light">Processo</span>
+                    <h2 class="section__title section__title--light">Como funciona o atendimento</h2>
+                    <p class="section__text section__text--light">Um processo simples, transparente e profissional do início ao fim.</p>
                 </div>
 
                 <div class="timeline">
@@ -538,7 +532,7 @@
                             <span class="contact__info-icon">✉️</span>
                             <div>
                                 <strong>Email</strong>
-                                <span>contato@matheusluz.com.br</span>
+                                <span>787mluz@gmail.com</span>
                             </div>
                         </li>
                     </ul>
@@ -549,7 +543,7 @@
                 </div>
 
                 <div class="contact__media reveal">
-                    <img src="img/manutencao.jpg" alt="Técnico realizando manutenção de rede" class="contact__image">
+                    <img src="img/contato.png" alt="Matheus Luz trabalhando em seu escritório, pronto para atender sua solicitação" class="contact__image">
                 </div>
             </div>
         </section>
@@ -560,7 +554,17 @@
     <footer class="footer">
         <div class="container footer__container">
             <div class="footer__brand">
-                <span class="footer__logo">MATHEUS LUZ</span>
+                <div class="footer__brand-row">
+                    <svg class="footer__logo-icon" width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="17" cy="7" r="3" fill="currentColor"/>
+                        <circle cx="6" cy="26" r="3" fill="currentColor"/>
+                        <circle cx="28" cy="26" r="3" fill="currentColor"/>
+                        <line x1="17" y1="7" x2="6" y2="26" stroke="currentColor" stroke-width="2"/>
+                        <line x1="17" y1="7" x2="28" y2="26" stroke="currentColor" stroke-width="2"/>
+                        <line x1="6" y1="26" x2="28" y2="26" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="footer__logo">MATHEUS LUZ</span>
+                </div>
                 <span class="footer__logo-subtitle">Redes &amp; Informática</span>
             </div>
 
@@ -574,7 +578,7 @@
 
             <div class="footer__contact">
                 <a href="tel:+5591986456795">📱 (91) 98645-6795</a>
-                <a href="mailto:contato@matheusluz.com.br">✉️ contato@matheusluz.com.br</a>
+                <a href="mailto:787mluz@gmail.com">✉️ 787mluz@gmail.com</a>
                 <a href="https://wa.me/5591986456795" target="_blank" rel="noopener">💬 WhatsApp</a>
             </div>
 
@@ -593,6 +597,23 @@
     <a href="https://wa.me/5591986456795" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Falar no WhatsApp">
         💬
     </a>
+
+    <!-- ===================== MODAL "SAIBA MAIS" (EQUIPAMENTOS) ===================== -->
+    <div class="equipment-modal" id="equipment-modal" hidden>
+        <div class="equipment-modal__overlay" id="equipment-modal-overlay"></div>
+        <div class="equipment-modal__box" role="dialog" aria-modal="true" aria-labelledby="equipment-modal-title">
+            <button type="button" class="equipment-modal__close" id="equipment-modal-close" aria-label="Fechar">✕</button>
+            <div class="equipment-modal__icon" id="equipment-modal-icon"></div>
+            <h3 class="equipment-modal__title" id="equipment-modal-title"></h3>
+            <p class="equipment-modal__intro" id="equipment-modal-intro"></p>
+            <ul class="equipment-modal__points" id="equipment-modal-points"></ul>
+            <div class="equipment-modal__importance">
+                <strong>Por que isso importa:</strong>
+                <p id="equipment-modal-importance"></p>
+            </div>
+            <a href="https://wa.me/5591986456795" target="_blank" rel="noopener" class="btn btn--whatsapp equipment-modal__cta">Falar com um especialista</a>
+        </div>
+    </div>
 
     <!-- ===================== SCRIPT ===================== -->
     <script src="js/script.js"></script>

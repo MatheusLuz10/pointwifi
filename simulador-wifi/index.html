@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Cobertura Wi-Fi | Planta da Casa</title>
+    <meta name="description" content="Simulador interativo de cobertura de sinal Wi-Fi dentro de uma casa, com cálculo em tempo real baseado em distância e paredes atravessadas.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===================== CABEÇALHO ===================== -->
+    <header class="app-header">
+        <div class="app-header__title">
+            <span class="app-header__icon">📶</span>
+            <div>
+                <h1>Simulador de Cobertura Wi-Fi</h1>
+                <p>Clique na planta da casa para posicionar o dispositivo e visualizar a propagação do sinal</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== LAYOUT PRINCIPAL ===================== -->
+    <main class="app-main">
+
+        <!-- ---------- PAINEL LATERAL ---------- -->
+        <aside class="panel">
+
+            <section class="panel__group">
+                <h2 class="panel__title">Dispositivo</h2>
+                <p class="panel__hint">Escolha o tipo de equipamento e clique na planta.</p>
+
+                <div class="device-selector" id="device-selector">
+                    <button type="button" class="device-btn is-active" data-device="router">
+                        <span class="device-btn__icon">📡</span>
+                        <span class="device-btn__label">Roteador</span>
+                    </button>
+                    <button type="button" class="device-btn" data-device="repeater">
+                        <span class="device-btn__icon">🔁</span>
+                        <span class="device-btn__label">Repetidor</span>
+                    </button>
+                    <button type="button" class="device-btn" data-device="accesspoint">
+                        <span class="device-btn__icon">📶</span>
+                        <span class="device-btn__label">Access Point</span>
+                    </button>
+                    <button type="button" class="device-btn" data-device="mesh">
+                        <span class="device-btn__icon">🛰️</span>
+                        <span class="device-btn__label">Mesh</span>
+                    </button>
+                </div>
+
+                <p class="panel__note" id="device-note">
+                    No modo Mesh, cada clique adiciona um novo ponto de rede.
+                </p>
+            </section>
+
+            <section class="panel__group">
+                <h2 class="panel__title">Características</h2>
+                <ul class="device-specs" id="device-specs">
+                    <li><span>Alcance máximo</span><strong id="spec-range">—</strong></li>
+                    <li><span>Perda por parede</span><strong id="spec-wallloss">—</strong></li>
+                    <li><span>Pontos ativos</span><strong id="spec-nodes">0</strong></li>
+                </ul>
+                <button type="button" class="btn-clear" id="btn-clear">Limpar simulação</button>
+            </section>
+
+            <section class="panel__group">
+                <h2 class="panel__title">Legenda do sinal</h2>
+                <ul class="legend">
+                    <li><span class="legend__swatch legend__swatch--excellent"></span> Excelente (75% – 100%)</li>
+                    <li><span class="legend__swatch legend__swatch--good"></span> Bom (50% – 74%)</li>
+                    <li><span class="legend__swatch legend__swatch--weak"></span> Fraco (25% – 49%)</li>
+                    <li><span class="legend__swatch legend__swatch--veryweak"></span> Muito fraco (1% – 24%)</li>
+                </ul>
+            </section>
+
+        </aside>
+
+        <!-- ---------- ÁREA DA PLANTA ---------- -->
+        <section class="stage">
+
+            <div class="stage__viewport" id="stage-viewport">
+
+                <!-- Camada 1 (fundo): piso dos cômodos e rótulos -->
+                <svg id="house-svg-base" class="house-svg" viewBox="0 0 900 650" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                    <g id="rooms-layer">
+                        <rect class="room-floor room-floor--sala" x="40" y="40" width="420" height="290" rx="4"></rect>
+                        <rect class="room-floor room-floor--cozinha" x="460" y="40" width="400" height="290" rx="4"></rect>
+                        <rect class="room-floor room-floor--quarto1" x="40" y="330" width="280" height="280" rx="4"></rect>
+                        <rect class="room-floor room-floor--banheiro" x="320" y="330" width="180" height="280" rx="4"></rect>
+                        <rect class="room-floor room-floor--quarto2" x="500" y="330" width="360" height="280" rx="4"></rect>
+                    </g>
+
+                    <g id="labels-layer" class="labels-layer">
+                        <text x="250" y="185" text-anchor="middle">🛋️ Sala</text>
+                        <text x="660" y="185" text-anchor="middle">🍳 Cozinha</text>
+                        <text x="180" y="470" text-anchor="middle">🛏️ Quarto 1</text>
+                        <text x="410" y="470" text-anchor="middle">🚿 Banheiro</text>
+                        <text x="680" y="470" text-anchor="middle">🛏️ Quarto 2</text>
+                    </g>
+                </svg>
+
+                <!-- Camada 2 (meio): mapa de calor do sinal Wi-Fi -->
+                <canvas id="heatmap-canvas" class="heatmap-canvas" width="900" height="650"></canvas>
+
+                <!-- Camada 3 (frente): paredes e dispositivos, sempre visíveis sobre o mapa de calor -->
+                <svg id="house-svg-overlay" class="house-svg" viewBox="0 0 900 650" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Paredes: desenhadas dinamicamente pelo JavaScript a partir do array WALLS -->
+                    <g id="walls-layer"></g>
+
+                    <!-- Dispositivos posicionados pelo usuário -->
+                    <g id="devices-layer"></g>
+                </svg>
+
+                <!-- Tooltip flutuante com a intensidade do sinal no ponto do cursor -->
+                <div class="signal-tooltip" id="signal-tooltip" hidden></div>
+
+            </div>
+
+            <p class="stage__hint" id="stage-hint">Clique em qualquer ponto da planta para posicionar o Roteador.</p>
+            <p class="stage__warning" id="stage-warning" hidden></p>
+
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>Simulador educativo de cobertura Wi-Fi — os valores são aproximações visuais e não substituem uma medição real de sinal.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -245,6 +245,17 @@ h1, h2, h3, h4 {
 
 .navbar__logo {
     display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar__logo-icon {
+    color: var(--color-blue);
+    flex-shrink: 0;
+}
+
+.navbar__logo-text {
+    display: flex;
     flex-direction: column;
     line-height: 1.2;
 }
@@ -253,8 +264,9 @@ h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 19px;
-    color: var(--color-blue-dark);
+    color: var(--color-white);
     letter-spacing: 0.5px;
+    transition: var(--transition);
 }
 
 .navbar__logo-subtitle {
@@ -273,7 +285,7 @@ h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 500;
     font-size: 15px;
-    color: var(--color-blue-dark);
+    color: var(--color-white);
     padding: 6px 0;
     transition: var(--transition);
 }
@@ -311,8 +323,18 @@ h1, h2, h3, h4 {
 .navbar__toggle span {
     width: 26px;
     height: 2px;
-    background-color: var(--color-blue-dark);
+    background-color: var(--color-white);
     transition: var(--transition);
+}
+
+/* Estado com fundo branco (após rolar) exige texto escuro para contraste */
+.navbar.is-scrolled .navbar__logo-title,
+.navbar.is-scrolled .navbar__link {
+    color: var(--color-blue-dark);
+}
+
+.navbar.is-scrolled .navbar__toggle span {
+    background-color: var(--color-blue-dark);
 }
 
 /* ---------- 6. HERO ---------- */
@@ -321,7 +343,7 @@ h1, h2, h3, h4 {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(160deg, #FFFFFF 0%, #EEF3FF 55%, #E4EDFF 100%);
+    background: linear-gradient(160deg, var(--color-blue-dark) 0%, #0d2450 55%, #0a1c3d 100%);
     overflow: hidden;
 }
 
@@ -332,7 +354,18 @@ h1, h2, h3, h4 {
     right: -10%;
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(11, 95, 255, 0.10) 0%, rgba(11, 95, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(11, 95, 255, 0.28) 0%, rgba(11, 95, 255, 0) 70%);
+    border-radius: 50%;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -15%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(11, 95, 255, 0.14) 0%, rgba(11, 95, 255, 0) 70%);
     border-radius: 50%;
 }
 
@@ -352,11 +385,12 @@ h1, h2, h3, h4 {
     font-weight: 800;
     margin-bottom: 24px;
     letter-spacing: -1px;
+    color: var(--color-white);
 }
 
 .hero__subtitle {
     font-size: 19px;
-    color: var(--color-text-light);
+    color: rgba(255, 255, 255, 0.7);
     max-width: 520px;
     margin-bottom: 32px;
 }
@@ -371,7 +405,7 @@ h1, h2, h3, h4 {
 .hero__list li {
     font-weight: 500;
     font-size: 15px;
-    color: var(--color-blue-dark);
+    color: var(--color-white);
     display: flex;
     align-items: center;
 }
@@ -386,10 +420,22 @@ h1, h2, h3, h4 {
     position: relative;
 }
 
+.hero__media::before {
+    content: '';
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle at 30% 30%, rgba(11, 95, 255, 0.45), transparent 70%);
+    filter: blur(50px);
+    z-index: 0;
+}
+
 .hero__image {
     width: 100%;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero__scroll-indicator {
@@ -399,7 +445,7 @@ h1, h2, h3, h4 {
     transform: translateX(-50%);
     width: 26px;
     height: 42px;
-    border: 2px solid rgba(10, 25, 49, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     z-index: 1;
 }
@@ -489,68 +535,19 @@ h1, h2, h3, h4 {
 
 .structure__benefits li {
     font-weight: 500;
-    color: var(--color-blue-dark);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .structure__diagram {
-    background-color: var(--color-blue-dark);
     border-radius: var(--radius-lg);
-    padding: 48px 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(11, 95, 255, 0.3);
 }
 
-.diagram__node {
+.structure__image {
     width: 100%;
-    max-width: 260px;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: var(--color-white);
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 15px;
-    padding: 14px;
-    border-radius: var(--radius-sm);
-    transition: var(--transition);
-}
-
-.diagram__node:hover {
-    background-color: rgba(11, 95, 255, 0.18);
-    border-color: var(--color-blue);
-    transform: scale(1.03);
-}
-
-.diagram__node--highlight {
-    background-color: var(--color-blue);
-    border-color: var(--color-blue);
-}
-
-.diagram__arrow {
-    color: var(--color-blue);
-    font-size: 22px;
-    line-height: 1;
-    padding: 6px 0;
-}
-
-.diagram__endpoints {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    max-width: 420px;
-}
-
-.diagram__endpoints span {
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 8px 14px;
-    border-radius: 999px;
+    display: block;
 }
 
 /* ---------- 9. GRID DE COMPARAÇÃO (CARDS) ---------- */
@@ -749,6 +746,7 @@ h1, h2, h3, h4 {
 .timeline__item h3 {
     font-size: 14px;
     text-align: center;
+    color: var(--color-white);
 }
 
 /* ---------- 13. ANTES E DEPOIS ---------- */
@@ -920,6 +918,17 @@ h1, h2, h3, h4 {
     flex-direction: column;
 }
 
+.footer__brand-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer__logo-icon {
+    color: var(--color-blue);
+    flex-shrink: 0;
+}
+
 .footer__logo {
     font-family: var(--font-heading);
     font-weight: 700;
@@ -993,6 +1002,138 @@ h1, h2, h3, h4 {
     0% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.5); }
     70% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 0 0 16px rgba(37, 211, 102, 0); }
     100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* ---------- 17b. MODAL "SAIBA MAIS" (EQUIPAMENTOS) ---------- */
+.equipment-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.equipment-modal[hidden] {
+    display: none;
+}
+
+.equipment-modal__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(10, 25, 49, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.equipment-modal__box {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 40px;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.equipment-modal.is-visible .equipment-modal__overlay {
+    opacity: 1;
+}
+
+.equipment-modal.is-visible .equipment-modal__box {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.equipment-modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--color-gray-light);
+    color: var(--color-blue-dark);
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.equipment-modal__close:hover {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    transform: rotate(90deg);
+}
+
+.equipment-modal__icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+}
+
+.equipment-modal__title {
+    font-size: 24px;
+    margin-bottom: 14px;
+}
+
+.equipment-modal__intro {
+    font-size: 15px;
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+}
+
+.equipment-modal__points {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.equipment-modal__points li {
+    font-size: 14px;
+    color: var(--color-text);
+    padding-left: 22px;
+    position: relative;
+}
+
+.equipment-modal__points li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: var(--color-blue);
+    font-weight: 700;
+}
+
+.equipment-modal__importance {
+    background-color: var(--color-blue-light);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin-bottom: 28px;
+}
+
+.equipment-modal__importance strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: var(--color-blue-dark);
+    margin-bottom: 6px;
+}
+
+.equipment-modal__importance p {
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.equipment-modal__cta {
+    width: 100%;
 }
 
 /* ---------- 18. SCROLL REVEAL (FADE-IN) ---------- */
@@ -1122,6 +1263,15 @@ h1, h2, h3, h4 {
     .footer__contact,
     .footer__social {
         align-items: center;
+    }
+
+    .footer__brand-row {
+        justify-content: center;
+    }
+
+    /* Painel do menu mobile tem fundo branco: texto sempre escuro, independente do scroll */
+    .navbar__nav .navbar__link {
+        color: var(--color-blue-dark);
     }
 
     .hero__list {
