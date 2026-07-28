@@ -1293,7 +1293,36 @@ h1, h2, h3, h4 {
     }
 
     .section {
-        padding: 80px 0;
+        padding: 64px 0;
+    }
+
+    /* Hero não deve forçar altura mínima de tela cheia no celular: o
+       conteúdo + imagem já ultrapassavam 100vh, deixando a página "esticada" */
+    .hero {
+        min-height: auto;
+    }
+
+    .hero__container {
+        padding-top: 90px;
+        padding-bottom: 40px;
+        gap: 28px;
+    }
+
+    .wifi-explain__container,
+    .structure__container,
+    .specialist__container,
+    .contact__container {
+        gap: 28px;
+    }
+
+    /* Limita a altura das fotos para não dominarem a tela em telas pequenas */
+    .hero__image,
+    .wifi-explain__image,
+    .structure__image,
+    .specialist__image,
+    .contact__image {
+        max-height: 280px;
+        object-fit: cover;
     }
 }
 
@@ -1309,5 +1338,21 @@ h1, h2, h3, h4 {
 
     .btn {
         width: 100%;
+    }
+
+    .section {
+        padding: 48px 0;
+    }
+
+    .hero__image,
+    .wifi-explain__image,
+    .structure__image,
+    .specialist__image,
+    .contact__image {
+        max-height: 220px;
+    }
+
+    .section__title {
+        font-size: 26px;
     }
 }
