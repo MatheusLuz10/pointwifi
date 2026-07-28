@@ -440,6 +440,8 @@ h1, h2, h3, h4 {
 
 .hero__image {
     width: 100%;
+    aspect-ratio: 941 / 1020;
+    object-fit: cover;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     position: relative;
