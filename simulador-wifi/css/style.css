@@ -317,6 +317,10 @@ ul {
 }
 
 /* Dispositivos posicionados */
+.device-marker {
+    cursor: pointer;
+}
+
 .device-marker__pulse {
     fill: none;
     stroke: var(--color-blue);
@@ -329,6 +333,12 @@ ul {
     fill: var(--color-blue-dark);
     stroke: var(--color-white);
     stroke-width: 3;
+    transition: var(--transition);
+}
+
+.device-marker:hover .device-marker__core {
+    fill: #EF4444;
+    stroke-width: 4;
 }
 
 .device-marker__icon {

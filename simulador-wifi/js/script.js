@@ -61,7 +61,7 @@
         },
         repeater: {
             label: 'Repetidor',
-            maxRange: 320,
+            maxRange: 460,
             wallLoss: 20,
             multiNode: true,
             dependsOnRouter: true,
@@ -84,10 +84,6 @@
             instructions: 'Clique na planta para adicionar pontos Mesh. Cada clique soma um novo nó à rede.'
         }
     };
-
-    // Eficiência da retransmissão: o repetidor nunca devolve mais sinal
-    // do que recebeu do Roteador, apenas propaga essa força para mais longe.
-    var REPEATER_EFFICIENCY = 0.92;
 
     /* =====================================================================
        3. ESTADO DA APLICAÇÃO
@@ -187,8 +183,9 @@
     }
 
     // O Repetidor não gera sinal próprio: ele primeiro "escuta" o sinal do
-    // Roteador na sua própria posição e só então retransmite uma versão
-    // atenuada dele. Sem Roteador ao alcance, o Repetidor fica inativo.
+    // Roteador na sua própria posição e retransmite com a mesma potência
+    // captada, melhorando a cobertura ao redor dele. Sem Roteador ao
+    // alcance, o Repetidor fica inativo.
     function signalFromRepeater(point, repeater) {
         var profile = DEVICE_PROFILES.repeater;
 
@@ -213,9 +210,10 @@
         var localCurve = Math.max(0, 1 - Math.pow(normalized, 1.6));
         var walls = countWallsCrossed(repeater, point);
 
-        // O sinal retransmitido nunca ultrapassa o que o repetidor recebeu.
-        var outputAtSelf = receivedAtRepeater * REPEATER_EFFICIENCY;
-        var strength = (outputAtSelf * localCurve) - (walls * profile.wallLoss);
+        // O repetidor retransmite com a mesma potência que captou do
+        // Roteador — na posição dele, o sinal chega tão forte quanto
+        // o que foi recebido, e a partir daí volta a cair com a distância.
+        var strength = (receivedAtRepeater * localCurve) - (walls * profile.wallLoss);
 
         return Math.max(0, Math.min(100, strength));
     }
@@ -258,6 +256,29 @@
         if (state.network.accesspoint) list.push(state.network.accesspoint);
         list = list.concat(state.network.repeater, state.network.mesh);
         return list;
+    }
+
+    // Remove um dispositivo específico da rede (o mesmo objeto de
+    // referência retornado por getAllDevices) e atualiza a simulação.
+    function removeDevice(device) {
+        if (state.network.router === device) {
+            state.network.router = null;
+        } else if (state.network.accesspoint === device) {
+            state.network.accesspoint = null;
+        } else {
+            var repeaterIndex = state.network.repeater.indexOf(device);
+            if (repeaterIndex !== -1) {
+                state.network.repeater.splice(repeaterIndex, 1);
+            }
+            var meshIndex = state.network.mesh.indexOf(device);
+            if (meshIndex !== -1) {
+                state.network.mesh.splice(meshIndex, 1);
+            }
+        }
+
+        renderDevices();
+        updatePanel();
+        renderHeatmap(Infinity);
     }
 
     function distanceToNearestDevice(point, devices) {
@@ -336,9 +357,19 @@
             var isInactiveRepeater = device.type === 'repeater' && !repeaterHasSignal(device);
 
             var group = document.createElementNS(ns, 'g');
-            if (isInactiveRepeater) {
-                group.setAttribute('class', 'device-marker--inactive');
-            }
+            group.setAttribute('class', isInactiveRepeater ? 'device-marker device-marker--inactive' : 'device-marker');
+
+            // Título nativo do SVG: aparece como tooltip ao passar o mouse
+            var title = document.createElementNS(ns, 'title');
+            title.textContent = DEVICE_PROFILES[device.type].label + ' — clique para remover';
+            group.appendChild(title);
+
+            // Clicar em um dispositivo já posicionado o remove, em vez de
+            // adicionar um novo (o evento não chega ao clique da planta).
+            group.addEventListener('click', function (evt) {
+                evt.stopPropagation();
+                removeDevice(device);
+            });
 
             var pulse = document.createElementNS(ns, 'circle');
             pulse.setAttribute('cx', device.x);
