@@ -380,7 +380,7 @@ h1, h2, h3, h4 {
 
 .hero__container {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 60px;
     padding-top: 100px;
@@ -445,6 +445,7 @@ h1, h2, h3, h4 {
     position: relative;
     z-index: 1;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    object-position: center 15%;
 }
 
 .hero__scroll-indicator {
@@ -1316,12 +1317,17 @@ h1, h2, h3, h4 {
     }
 
     /* Limita a altura das fotos para não dominarem a tela em telas pequenas */
-    .hero__image,
     .wifi-explain__image,
     .structure__image,
     .specialist__image,
     .contact__image {
         max-height: 280px;
+        object-fit: cover;
+    }
+
+    /* Foto do Hero fica maior e em destaque, com o rosto bem enquadrado */
+    .hero__image {
+        max-height: 380px;
         object-fit: cover;
     }
 }
@@ -1344,12 +1350,15 @@ h1, h2, h3, h4 {
         padding: 48px 0;
     }
 
-    .hero__image,
     .wifi-explain__image,
     .structure__image,
     .specialist__image,
     .contact__image {
         max-height: 220px;
+    }
+
+    .hero__image {
+        max-height: 320px;
     }
 
     .section__title {
