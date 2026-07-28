@@ -38,6 +38,14 @@ button {
     background: none;
 }
 
+/* Foco visível para navegação por teclado (acessibilidade) */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid #0B5FFF;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
 /* ---------- 2. VARIÁVEIS DE DESIGN ---------- */
 :root {
     /* Cores principais */
@@ -233,6 +241,7 @@ h1, h2, h3, h4 {
 .navbar.is-scrolled {
     padding: 14px 0;
     background-color: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
 }
@@ -1023,6 +1032,7 @@ h1, h2, h3, h4 {
     position: absolute;
     inset: 0;
     background-color: rgba(10, 25, 49, 0.6);
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     opacity: 0;
     transition: opacity 0.25s ease;

@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     navToggle.addEventListener('click', function () {
         var isOpen = navMenu.classList.toggle('is-open');
         navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
     });
 
     /* Fecha o menu mobile ao clicar em qualquer link */
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function () {
             navMenu.classList.remove('is-open');
             navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.setAttribute('aria-label', 'Abrir menu');
         });
     });
 
