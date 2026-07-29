@@ -488,6 +488,9 @@ h1, h2, h3, h4 {
 }
 
 .wifi-explain__image {
+    width: 100%;
+    aspect-ratio: 1536 / 1024;
+    object-fit: cover;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
 }
@@ -559,6 +562,8 @@ h1, h2, h3, h4 {
 
 .structure__image {
     width: 100%;
+    aspect-ratio: 1536 / 1024;
+    object-fit: cover;
     display: block;
 }
 
@@ -687,6 +692,9 @@ h1, h2, h3, h4 {
 }
 
 .specialist__image {
+    width: 100%;
+    aspect-ratio: 1402 / 1122;
+    object-fit: cover;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
 }
@@ -907,6 +915,9 @@ h1, h2, h3, h4 {
 }
 
 .contact__image {
+    width: 100%;
+    aspect-ratio: 1536 / 1024;
+    object-fit: cover;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
 }
