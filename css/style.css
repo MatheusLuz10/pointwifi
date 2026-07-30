@@ -1129,9 +1129,57 @@ h1, h2, h3, h4 {
     color: var(--color-text-light);
 }
 
-/* Botão dentro dos cards de produto (o service-card original não tem botão) */
+/* ---------- PRODUTOS: catálogo compacto de equipamentos ---------- */
+/* Grid mais denso que o .services-grid padrão: cards menores, mais
+   colunas por linha, sem o excesso de espaço de um card de serviço. */
+.products-grid {
+    gap: 16px;
+}
+
+.products-grid .service-card {
+    padding: 20px 18px;
+}
+
+.products-grid .service-card h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.products-grid .service-card p {
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+/* Ícone profissional (SVG) em selo circular azul, no lugar do emoji —
+   visual de catálogo técnico em vez de lista ilustrada. */
+.product-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-blue-light);
+    border-radius: var(--radius-sm);
+    color: var(--color-blue);
+    margin-bottom: 14px;
+}
+
+.product-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Botão dentro dos cards de produto (o service-card original não tem botão).
+   white-space:normal sobrescreve o nowrap padrão do .btn — em cards de
+   2 colunas no celular, o texto do botão pode ser mais largo que o card. */
 .products-grid .btn {
-    margin-top: 18px;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 14px;
+    font-size: 13px;
+    margin-top: 14px;
+    white-space: normal;
+    line-height: 1.3;
 }
 
 /* Rótulo de subgrupo dentro de uma grade grande (Serviços, Produtos) —
@@ -1328,6 +1376,31 @@ h1, h2, h3, h4 {
 
     .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Catálogo de produtos mantém 2 colunas mesmo no celular — cards
+       compactos o suficiente para caber lado a lado. */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .products-grid .service-card {
+        padding: 16px 14px;
+    }
+
+    /* Card "Como funciona o Wi-Fi": empilha em vez de espremer
+       ícone + texto + botão numa única linha estreita. */
+    .edu-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 28px 24px;
+    }
+
+    .edu-card__btn {
+        width: 100%;
     }
 
     .simulator-banner {
