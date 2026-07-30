@@ -427,22 +427,22 @@ h1, h2, h3, h4 {
 }
 
 .hero__container {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    align-items: center;
-    gap: 60px;
-    padding-top: 100px;
-    padding-bottom: 60px;
+    padding-top: 130px;
+    padding-bottom: 80px;
     position: relative;
     z-index: 1;
 }
 
-/* Flex column para permitir reordenar os blocos internos (título,
-   botões, selos, indicadores) especificamente no mobile via "order",
-   sem alterar a ordem no HTML nem no layout de desktop. */
+/* Hero sem foto: conteúdo centralizado em coluna única. Continua flex
+   column para permitir reordenar os blocos internos (botões, selos,
+   indicadores) especificamente no mobile via "order". */
 .hero__content {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
 }
 
 .hero__title {
@@ -456,13 +456,14 @@ h1, h2, h3, h4 {
 .hero__subtitle {
     font-size: 19px;
     color: rgba(255, 255, 255, 0.7);
-    max-width: 520px;
+    max-width: 600px;
     margin-bottom: 24px;
 }
 
 .hero__badges {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
     margin-bottom: 28px;
 }
@@ -494,36 +495,9 @@ h1, h2, h3, h4 {
 
 .hero__buttons {
     display: flex;
+    justify-content: center;
     gap: 18px;
     flex-wrap: wrap;
-}
-
-.hero__media {
-    position: relative;
-}
-
-.hero__media::before {
-    content: '';
-    position: absolute;
-    inset: -30px;
-    background: radial-gradient(circle at 30% 30%, rgba(11, 95, 255, 0.45), transparent 70%);
-    filter: blur(50px);
-    z-index: 0;
-}
-
-.hero__image {
-    width: 100%;
-    max-width: 430px;
-    margin-left: auto;
-    margin-right: auto;
-    aspect-ratio: 941 / 1020;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    z-index: 1;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    object-position: center 15%;
 }
 
 .hero__scroll-indicator {
@@ -837,15 +811,16 @@ h1, h2, h3, h4 {
     background: linear-gradient(160deg, var(--color-blue-dark) 0%, #0d2450 100%);
 }
 
+/* Contato sem foto: conteúdo centralizado em coluna única. */
 .contact__container {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
-    gap: 60px;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .contact__info {
-    margin: 32px 0 40px;
+    width: fit-content;
+    margin: 32px auto 40px;
     display: flex;
     flex-direction: column;
     gap: 22px;
@@ -879,11 +854,6 @@ h1, h2, h3, h4 {
 .contact__info span {
     color: rgba(255, 255, 255, 0.65);
     font-size: 14px;
-}
-
-.contact__image {
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
 }
 
 /* ---------- 16. RODAPÉ ---------- */
@@ -1287,33 +1257,8 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 960px) {
-    .hero__container,
-    .contact__container {
-        grid-template-columns: 1fr;
-    }
-
-    .hero__container {
-        text-align: center;
-    }
-
-    .hero__list {
-        justify-content: center;
-    }
-
-    .hero__badges {
-        justify-content: center;
-    }
-
-    .hero__buttons {
-        justify-content: center;
-    }
-
-    .hero__media {
-        order: -1;
-    }
-
-    /* No mobile, a leitura segue: Imagem → Título → Subtítulo →
-       Botões → Selos de confiança → Indicadores. */
+    /* No mobile, a leitura segue: Título → Subtítulo → Botões →
+       Selos de confiança → Indicadores (CTA logo após o subtítulo). */
     .hero__buttons {
         order: 1;
         margin-bottom: 24px;
@@ -1435,24 +1380,6 @@ h1, h2, h3, h4 {
     .hero__container {
         padding-top: 90px;
         padding-bottom: 40px;
-        gap: 28px;
-    }
-
-    .contact__container {
-        gap: 28px;
-    }
-
-    /* Foto de contato em proporção vertical (4:5) no mobile — mais
-       parecido com um cartão de app do que com um banner largo e baixo. */
-    .contact__image {
-        aspect-ratio: 4 / 5;
-        object-fit: cover;
-    }
-
-    /* Foto do Hero fica maior e em destaque, com o rosto bem enquadrado */
-    .hero__image {
-        max-height: 380px;
-        object-fit: cover;
     }
 }
 
@@ -1472,10 +1399,6 @@ h1, h2, h3, h4 {
 
     .section {
         padding: 36px 0;
-    }
-
-    .hero__image {
-        max-height: 320px;
     }
 
     .section__title {
