@@ -58,6 +58,13 @@ button:focus-visible {
     --color-text: #3A4457;
     --color-text-light: #7A8494;
 
+    /* Cores de apoio (antes soltas no CSS, ex.: bloco Antes/Depois e estrelas) */
+    --color-danger: #D33;
+    --color-danger-text: #A94442;
+    --color-danger-bg: #FFF3F3;
+    --color-danger-border: #FFDADA;
+    --color-star: #FFB800;
+
     /* Tipografia */
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -74,6 +81,14 @@ button:focus-visible {
 
     /* Transições */
     --transition: all 0.3s ease;
+
+    /* Escala de espaçamento (para padronizar gap/padding de seções novas) */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 40px;
+    --space-xl: 64px;
+    --space-2xl: 96px;
 }
 
 /* ---------- 3. BASE ---------- */
@@ -794,16 +809,16 @@ h1, h2, h3, h4 {
 }
 
 .before-after__card--before {
-    background-color: #FFF3F3;
-    border: 1px solid #FFDADA;
+    background-color: var(--color-danger-bg);
+    border: 1px solid var(--color-danger-border);
 }
 
 .before-after__card--before h3 {
-    color: #D33;
+    color: var(--color-danger);
 }
 
 .before-after__card--before li {
-    color: #A94442;
+    color: var(--color-danger-text);
 }
 
 .before-after__card--after {
@@ -840,7 +855,7 @@ h1, h2, h3, h4 {
 }
 
 .testimonial-card__stars {
-    color: #FFB800;
+    color: var(--color-star);
     font-size: 18px;
     margin-bottom: 16px;
     letter-spacing: 2px;

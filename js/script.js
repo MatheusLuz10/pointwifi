@@ -18,26 +18,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     updateNavbarState();
-    window.addEventListener('scroll', updateNavbarState);
+
+    /* Agrupa as leituras de scroll em 1 execução por frame (evita recalculo
+       de estilo em excesso durante rolagem rápida no mobile) */
+    var scrollTicking = false;
+    window.addEventListener('scroll', function () {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(function () {
+                updateNavbarState();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    });
 
     /* ---------- 2. MENU MOBILE (HAMBÚRGUER) ---------- */
     var navToggle = document.getElementById('navbar-toggle');
     var navMenu = document.getElementById('navbar-nav');
 
+    function closeMobileMenu() {
+        navMenu.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Abrir menu');
+    }
+
     navToggle.addEventListener('click', function () {
         var isOpen = navMenu.classList.toggle('is-open');
         navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         navToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+
+        // Move o foco para o primeiro link ao abrir, para quem navega por teclado
+        if (isOpen) {
+            var firstLink = navMenu.querySelector('a');
+            if (firstLink) firstLink.focus();
+        }
     });
 
     /* Fecha o menu mobile ao clicar em qualquer link */
     var navLinks = navMenu.querySelectorAll('a');
     navLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-            navMenu.classList.remove('is-open');
-            navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.setAttribute('aria-label', 'Abrir menu');
-        });
+        link.addEventListener('click', closeMobileMenu);
     });
 
     /* ---------- 3. SCROLL REVEAL (FADE-IN AO ROLAR) ---------- */
@@ -174,9 +194,18 @@ document.addEventListener('DOMContentLoaded', function () {
         modalOverlay.addEventListener('click', closeEquipmentModal);
     }
 
+    /* Listener único de Esc para os dois overlays do site (modal e menu
+       mobile), evitando registrar mais de um handler de keydown */
     document.addEventListener('keydown', function (evt) {
-        if (evt.key === 'Escape' && modal && !modal.hidden) {
+        if (evt.key !== 'Escape') return;
+
+        if (modal && !modal.hidden) {
             closeEquipmentModal();
+        }
+
+        if (navMenu.classList.contains('is-open')) {
+            closeMobileMenu();
+            navToggle.focus();
         }
     });
 
