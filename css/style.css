@@ -117,7 +117,7 @@ h1, h2, h3, h4 {
 }
 
 .section {
-    padding: 120px 0;
+    padding: 92px 0;
 }
 
 .section--gray {
@@ -130,7 +130,7 @@ h1, h2, h3, h4 {
 
 .section__header {
     max-width: 640px;
-    margin: 0 auto 64px;
+    margin: 0 auto 44px;
     text-align: center;
 }
 
@@ -713,8 +713,37 @@ h1, h2, h3, h4 {
 .compare-card__btn {
     margin: 0 28px;
     align-self: flex-start;
+    max-width: calc(100% - 56px);
     padding: 10px 22px;
     font-size: 14px;
+    white-space: normal;
+    text-align: center;
+}
+
+/* Placeholder para seções ainda em construção (ex.: Pacotes) — comunica
+   que o conteúdo está sendo finalizado sem deixar a seção vazia. */
+.wip-placeholder {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: var(--color-warning-bg);
+    border: 1px dashed var(--color-warning-border);
+    border-radius: var(--radius-md);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.wip-placeholder__icon {
+    font-size: 32px;
+}
+
+.wip-placeholder__text {
+    font-size: 15px;
+    color: var(--color-text-light);
+    line-height: 1.6;
 }
 
 /* ---------- 10. SERVIÇOS ---------- */
@@ -1549,7 +1578,7 @@ h1, h2, h3, h4 {
     }
 
     .section {
-        padding: 64px 0;
+        padding: 48px 0;
     }
 
     /* Hero não deve forçar altura mínima de tela cheia no celular: o
@@ -1603,7 +1632,7 @@ h1, h2, h3, h4 {
     }
 
     .section {
-        padding: 48px 0;
+        padding: 36px 0;
     }
 
     .hero__image {
@@ -1615,7 +1644,7 @@ h1, h2, h3, h4 {
     }
 
     .section__header {
-        margin-bottom: 40px;
+        margin-bottom: 28px;
     }
 
     .service-card {
