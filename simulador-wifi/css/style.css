@@ -441,6 +441,12 @@ ul {
         grid-template-columns: 1fr;
     }
 
+    /* No celular, a planta (bloco de cômodos) aparece antes do painel
+       de legenda/botões, sem depender da ordem no HTML. */
+    .stage {
+        order: -1;
+    }
+
     .panel {
         position: static;
         flex-direction: row;
