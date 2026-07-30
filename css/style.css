@@ -1234,11 +1234,13 @@ h1, h2, h3, h4 {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--color-blue);
-    margin: 0 0 20px;
+    margin: 48px 0 20px;
 }
 
-.group-title:not(:first-child) {
-    margin-top: 48px;
+/* O primeiro grupo de cada seção já tem espaço suficiente vindo da
+   margem do .section__header — não soma mais espaço em cima dele. */
+.section__header + .group-title {
+    margin-top: 0;
 }
 
 .group-title--light {
@@ -1449,6 +1451,18 @@ h1, h2, h3, h4 {
         padding: 40px 28px;
     }
 
+    .simulator-banner__icon {
+        font-size: 44px;
+    }
+
+    .group-title {
+        margin-top: 32px;
+    }
+
+    .compare-card--highlight {
+        border-width: 1.5px;
+    }
+
     .footer__container {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1546,5 +1560,32 @@ h1, h2, h3, h4 {
 
     .section__title {
         font-size: 26px;
+    }
+
+    .section__header {
+        margin-bottom: 40px;
+    }
+
+    .service-card {
+        padding: 24px 20px;
+    }
+
+    .services-grid,
+    .compare-grid {
+        gap: 18px;
+    }
+
+    .group-title {
+        margin-top: 24px;
+        margin-bottom: 14px;
+    }
+
+    .simulator-banner {
+        padding: 32px 20px;
+        gap: 20px;
+    }
+
+    .faq-item {
+        padding: 16px 18px;
     }
 }
