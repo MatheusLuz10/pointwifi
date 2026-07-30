@@ -555,87 +555,73 @@ h1, h2, h3, h4 {
     100% { opacity: 0; top: 22px; }
 }
 
-/* ---------- 7. COMO FUNCIONA O WI-FI ---------- */
-.wifi-explain__container {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
+/* ---------- 7. COMO FUNCIONA O WI-FI (card compacto) ---------- */
+.edu-card {
+    display: flex;
     align-items: center;
-    gap: 70px;
-}
-
-.wifi-explain__image {
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-}
-
-.wifi-explain__steps {
-    margin-top: 32px;
-    display: flex;
-    flex-direction: column;
     gap: 24px;
+    max-width: 720px;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 28px 32px;
 }
 
-.wifi-explain__steps li {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
+.edu-card__icon {
+    font-size: 32px;
+    flex-shrink: 0;
 }
 
-.wifi-explain__steps h3 {
-    font-size: 17px;
+.edu-card__content {
+    flex-grow: 1;
+}
+
+.edu-card__content h3 {
+    font-size: 16px;
     margin-bottom: 4px;
 }
 
-.wifi-explain__steps p {
-    font-size: 15px;
+.edu-card__content p {
+    font-size: 14px;
     color: var(--color-text-light);
 }
 
-.wifi-explain__step-number {
+.edu-card__btn {
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ---------- 8. ESTRUTURA DE REDE (ícones compactos) ---------- */
+.structure-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 8px;
+}
+
+.structure-icons li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.structure-icons__icon {
+    width: 52px;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-blue);
-    color: var(--color-white);
-    border-radius: 50%;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 15px;
-}
-
-/* ---------- 8. ESTRUTURA DE REDE ---------- */
-.structure__container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 70px;
-}
-
-.structure__benefits {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.structure__benefits li {
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.structure__diagram {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    background-color: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(11, 95, 255, 0.3);
-}
-
-.structure__image {
-    width: 100%;
-    display: block;
+    border-radius: 50%;
+    font-size: 22px;
 }
 
 /* ---------- 9. GRID DE COMPARAÇÃO (CARDS) ---------- */
@@ -753,6 +739,12 @@ h1, h2, h3, h4 {
     gap: 24px;
 }
 
+/* Variante com 3 colunas — usada em grades com número de cards
+   múltiplo de 3 (ex.: Diferenciais), evita a última linha desalinhada. */
+.services-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .service-card {
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -781,32 +773,6 @@ h1, h2, h3, h4 {
 .service-card p {
     color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
-}
-
-/* ---------- 11. POR QUE CONTRATAR UM ESPECIALISTA ---------- */
-.specialist__container {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    align-items: center;
-    gap: 70px;
-}
-
-.specialist__image {
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-}
-
-.specialist__list {
-    margin-top: 28px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px 24px;
-}
-
-.specialist__list li {
-    font-weight: 500;
-    color: var(--color-blue-dark);
-    font-size: 15px;
 }
 
 /* ---------- 12. TIMELINE DE ATENDIMENTO ---------- */
@@ -864,102 +830,6 @@ h1, h2, h3, h4 {
     font-size: 14px;
     text-align: center;
     color: var(--color-white);
-}
-
-/* ---------- 13. ANTES E DEPOIS ---------- */
-.before-after {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-}
-
-.before-after__card {
-    padding: 44px;
-    border-radius: var(--radius-md);
-    transition: var(--transition);
-}
-
-.before-after__card:hover {
-    transform: translateY(-6px);
-}
-
-.before-after__card h3 {
-    font-size: 22px;
-    margin-bottom: 24px;
-}
-
-.before-after__card ul {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    font-weight: 500;
-}
-
-.before-after__card--before {
-    background-color: var(--color-danger-bg);
-    border: 1px solid var(--color-danger-border);
-}
-
-.before-after__card--before h3 {
-    color: var(--color-danger);
-}
-
-.before-after__card--before li {
-    color: var(--color-danger-text);
-}
-
-.before-after__card--after {
-    background-color: var(--color-blue-light);
-    border: 1px solid #CBDDFF;
-}
-
-.before-after__card--after h3 {
-    color: var(--color-blue);
-}
-
-.before-after__card--after li {
-    color: var(--color-blue-dark);
-}
-
-/* ---------- 14. DEPOIMENTOS ---------- */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-}
-
-.testimonial-card {
-    background-color: var(--color-white);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    padding: 36px 32px;
-    transition: var(--transition);
-}
-
-.testimonial-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
-}
-
-.testimonial-card__stars {
-    color: var(--color-star);
-    font-size: 18px;
-    margin-bottom: 16px;
-    letter-spacing: 2px;
-}
-
-.testimonial-card p {
-    font-size: 15px;
-    color: var(--color-text);
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.testimonial-card__author {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--color-blue-dark);
 }
 
 /* ---------- 15. CONTATO ---------- */
@@ -1317,11 +1187,6 @@ h1, h2, h3, h4 {
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* Destaque do pacote recomendado, reaproveitando o .compare-card padrão */
-.compare-card--highlight {
-    border: 2px solid var(--color-blue);
-}
-
 /* Vitrine do Simulador Wi-Fi (ferramenta existente, não alterada) */
 .simulator-banner {
     background-color: var(--color-blue-light);
@@ -1423,9 +1288,6 @@ h1, h2, h3, h4 {
 
 @media (max-width: 960px) {
     .hero__container,
-    .wifi-explain__container,
-    .structure__container,
-    .specialist__container,
     .contact__container {
         grid-template-columns: 1fr;
     }
@@ -1446,7 +1308,6 @@ h1, h2, h3, h4 {
         justify-content: center;
     }
 
-    .wifi-explain__media,
     .hero__media {
         order: -1;
     }
@@ -1524,14 +1385,6 @@ h1, h2, h3, h4 {
         grid-template-columns: 1fr;
     }
 
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .before-after {
-        grid-template-columns: 1fr;
-    }
-
     .simulator-banner {
         flex-direction: column;
         text-align: center;
@@ -1544,10 +1397,6 @@ h1, h2, h3, h4 {
 
     .group-title {
         margin-top: 32px;
-    }
-
-    .compare-card--highlight {
-        border-width: 1.5px;
     }
 
     .footer__container {
@@ -1573,10 +1422,6 @@ h1, h2, h3, h4 {
         grid-template-columns: 1fr;
     }
 
-    .specialist__list {
-        grid-template-columns: 1fr;
-    }
-
     .section {
         padding: 48px 0;
     }
@@ -1593,18 +1438,12 @@ h1, h2, h3, h4 {
         gap: 28px;
     }
 
-    .wifi-explain__container,
-    .structure__container,
-    .specialist__container,
     .contact__container {
         gap: 28px;
     }
 
-    /* Fotos em proporção vertical (4:5) no mobile — mais parecido com
-       um cartão de app do que com um banner largo e baixo. */
-    .wifi-explain__image,
-    .structure__image,
-    .specialist__image,
+    /* Foto de contato em proporção vertical (4:5) no mobile — mais
+       parecido com um cartão de app do que com um banner largo e baixo. */
     .contact__image {
         aspect-ratio: 4 / 5;
         object-fit: cover;

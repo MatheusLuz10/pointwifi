@@ -1,5 +1,5 @@
 /* =========================================================================
-   MATHEUS LUZ - REDES & INFORMÁTICA
+   CONECTA SINAL - REDES & INFORMÁTICA
    Script principal (JavaScript puro, sem dependências)
    ========================================================================= */
 
