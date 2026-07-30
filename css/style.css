@@ -181,6 +181,7 @@ h1, h2, h3, h4 {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    min-height: 56px;
     padding: 15px 32px;
     border-radius: var(--radius-sm);
     font-family: var(--font-heading);
@@ -211,6 +212,20 @@ h1, h2, h3, h4 {
 .btn--outline:hover {
     background-color: var(--color-blue);
     color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* Botão secundário sobre fundo escuro (ex.: Hero) — contorno claro
+   em vez de azul, que teria contraste mais fraco sobre navy. */
+.btn--outline-light {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn--outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-white);
     transform: translateY(-3px);
 }
 
@@ -402,6 +417,14 @@ h1, h2, h3, h4 {
     padding-bottom: 60px;
     position: relative;
     z-index: 1;
+}
+
+/* Flex column para permitir reordenar os blocos internos (título,
+   botões, selos, indicadores) especificamente no mobile via "order",
+   sem alterar a ordem no HTML nem no layout de desktop. */
+.hero__content {
+    display: flex;
+    flex-direction: column;
 }
 
 .hero__title {
@@ -1283,8 +1306,8 @@ h1, h2, h3, h4 {
 .faq-item {
     background-color: var(--color-white);
     border: 1px solid rgba(10, 25, 49, 0.08);
-    border-radius: var(--radius-sm);
-    padding: 20px 24px;
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
 }
 
 .faq-item summary {
@@ -1298,6 +1321,7 @@ h1, h2, h3, h4 {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    min-height: 32px;
 }
 
 .faq-item summary::-webkit-details-marker {
@@ -1378,6 +1402,22 @@ h1, h2, h3, h4 {
     .wifi-explain__media,
     .hero__media {
         order: -1;
+    }
+
+    /* No mobile, a leitura segue: Imagem → Título → Subtítulo →
+       Botões → Selos de confiança → Indicadores. */
+    .hero__buttons {
+        order: 1;
+        margin-bottom: 24px;
+    }
+
+    .hero__badges {
+        order: 2;
+    }
+
+    .hero__list {
+        order: 3;
+        margin-bottom: 0;
     }
 
     .section__title {
@@ -1513,12 +1553,13 @@ h1, h2, h3, h4 {
         gap: 28px;
     }
 
-    /* Limita a altura das fotos para não dominarem a tela em telas pequenas */
+    /* Fotos em proporção vertical (4:5) no mobile — mais parecido com
+       um cartão de app do que com um banner largo e baixo. */
     .wifi-explain__image,
     .structure__image,
     .specialist__image,
     .contact__image {
-        max-height: 280px;
+        aspect-ratio: 4 / 5;
         object-fit: cover;
     }
 
@@ -1545,13 +1586,6 @@ h1, h2, h3, h4 {
 
     .section {
         padding: 48px 0;
-    }
-
-    .wifi-explain__image,
-    .structure__image,
-    .specialist__image,
-    .contact__image {
-        max-height: 220px;
     }
 
     .hero__image {

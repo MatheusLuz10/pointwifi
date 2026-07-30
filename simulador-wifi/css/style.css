@@ -75,6 +75,27 @@ ul {
     padding: 28px 32px;
 }
 
+.app-header__back {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    max-width: 1280px;
+    margin: 0 auto 16px;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.app-header__back:hover,
+.app-header__back:focus-visible {
+    color: var(--color-white);
+}
+
 .app-header__title {
     display: flex;
     align-items: center;
