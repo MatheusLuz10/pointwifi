@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var modalIntro = document.getElementById('equipment-modal-intro');
     var modalPoints = document.getElementById('equipment-modal-points');
     var modalImportance = document.getElementById('equipment-modal-importance');
+    var modalCta = document.getElementById('equipment-modal-cta');
     var modalTriggers = document.querySelectorAll('[data-modal-target]');
 
     function openEquipmentModal(key) {
@@ -155,6 +156,12 @@ document.addEventListener('DOMContentLoaded', function () {
         modalTitle.textContent = info.title;
         modalIntro.textContent = info.intro;
         modalImportance.textContent = info.importance;
+
+        // Mensagem do WhatsApp pré-preenchida com o equipamento visto no modal
+        if (modalCta) {
+            var whatsappMessage = 'Olá! Tenho interesse em ' + info.title + ' e gostaria de saber mais.';
+            modalCta.href = 'https://wa.me/5591986456795?text=' + encodeURIComponent(whatsappMessage);
+        }
 
         modalPoints.innerHTML = '';
         info.points.forEach(function (point) {

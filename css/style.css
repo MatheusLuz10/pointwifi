@@ -416,7 +416,24 @@ h1, h2, h3, h4 {
     font-size: 19px;
     color: rgba(255, 255, 255, 0.7);
     max-width: 520px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
+}
+
+.hero__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.hero__badges li {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 7px 14px;
+    border-radius: 999px;
 }
 
 .hero__list {
@@ -938,7 +955,7 @@ h1, h2, h3, h4 {
 
 .footer__container {
     display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr 0.8fr;
+    grid-template-columns: 1.3fr 1fr 1fr;
     gap: 40px;
     padding-bottom: 48px;
 }
@@ -973,24 +990,21 @@ h1, h2, h3, h4 {
 }
 
 .footer__links,
-.footer__contact,
-.footer__social {
+.footer__contact {
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
 
 .footer__links a,
-.footer__contact a,
-.footer__social a {
+.footer__contact a {
     color: rgba(255, 255, 255, 0.65);
     font-size: 14px;
     transition: var(--transition);
 }
 
 .footer__links a:hover,
-.footer__contact a:hover,
-.footer__social a:hover {
+.footer__contact a:hover {
     color: var(--color-blue);
 }
 
@@ -1167,6 +1181,113 @@ h1, h2, h3, h4 {
     width: 100%;
 }
 
+/* ---------- 17c. NOVOS BLOCOS (PROBLEMAS, PACOTES, PRODUTOS, SIMULADOR, FAQ) ----------
+   Reaproveitam a anatomia de componentes já existentes (service-card, compare-card,
+   compare-grid, services-grid) em vez de criar variações novas do zero. */
+
+/* Variante clara do card de serviço, para seções com fundo branco/cinza
+   (o .service-card original foi pensado para fundo escuro) */
+.service-card--light {
+    background-color: var(--color-white);
+    border: 1px solid rgba(10, 25, 49, 0.06);
+    box-shadow: var(--shadow-sm);
+}
+
+.service-card--light:hover {
+    background-color: var(--color-white);
+    border-color: var(--color-blue);
+    box-shadow: var(--shadow-md);
+}
+
+.service-card--light h3 {
+    color: var(--color-blue-dark);
+}
+
+.service-card--light p {
+    color: var(--color-text-light);
+}
+
+/* Botão dentro dos cards de produto (o service-card original não tem botão) */
+.products-grid .btn {
+    margin-top: 18px;
+}
+
+/* Destaque do pacote recomendado, reaproveitando o .compare-card padrão */
+.compare-card--highlight {
+    border: 2px solid var(--color-blue);
+}
+
+/* Vitrine do Simulador Wi-Fi (ferramenta existente, não alterada) */
+.simulator-banner {
+    background-color: var(--color-blue-light);
+    border-radius: var(--radius-lg);
+    padding: 56px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.simulator-banner__icon {
+    font-size: 64px;
+    flex-shrink: 0;
+}
+
+.simulator-banner__content .section__text {
+    margin-bottom: 24px;
+}
+
+/* Perguntas frequentes (acordeão nativo, sem JavaScript adicional) */
+.faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background-color: var(--color-white);
+    border: 1px solid rgba(10, 25, 49, 0.08);
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-blue-dark);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: '+';
+    font-size: 22px;
+    line-height: 1;
+    color: var(--color-blue);
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-item p {
+    margin-top: 14px;
+    color: var(--color-text-light);
+    font-size: 15px;
+}
+
 /* ---------- 18. SCROLL REVEAL (FADE-IN) ---------- */
 .reveal {
     opacity: 0;
@@ -1208,6 +1329,10 @@ h1, h2, h3, h4 {
     }
 
     .hero__list {
+        justify-content: center;
+    }
+
+    .hero__badges {
         justify-content: center;
     }
 
@@ -1285,14 +1410,19 @@ h1, h2, h3, h4 {
         grid-template-columns: 1fr;
     }
 
+    .simulator-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 28px;
+    }
+
     .footer__container {
         grid-template-columns: 1fr;
         text-align: center;
     }
 
     .footer__links,
-    .footer__contact,
-    .footer__social {
+    .footer__contact {
         align-items: center;
     }
 
