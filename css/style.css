@@ -64,6 +64,9 @@ button:focus-visible {
     --color-danger-bg: #FFF3F3;
     --color-danger-border: #FFDADA;
     --color-star: #FFB800;
+    --color-warning: #B4550B;
+    --color-warning-bg: #FFF4E5;
+    --color-warning-border: #FFE1B3;
 
     /* Tipografia */
     --font-heading: 'Poppins', sans-serif;
@@ -148,6 +151,21 @@ h1, h2, h3, h4 {
 .section__tag--light {
     color: var(--color-white);
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Selo "em desenvolvimento" — sinaliza que o conteúdo da seção
+   (ex.: preços/itens dos Pacotes) ainda não está fechado. */
+.badge-wip {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-warning);
+    background-color: var(--color-warning-bg);
+    border: 1px solid var(--color-warning-border);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
 }
 
 .section__title {
