@@ -1185,6 +1185,18 @@ h1, h2, h3, h4 {
    Reaproveitam a anatomia de componentes já existentes (service-card, compare-card,
    compare-grid, services-grid) em vez de criar variações novas do zero. */
 
+/* Botão de fechamento centralizado ao fim de uma seção (Serviços, FAQ).
+   Não reaproveita display:inline-flex do .btn para poder quebrar linha
+   em telas estreitas, em vez de estourar a largura da tela. */
+.section-cta {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    margin: 48px auto 0;
+    white-space: normal;
+    text-align: center;
+}
+
 /* Variante clara do card de serviço, para seções com fundo branco/cinza
    (o .service-card original foi pensado para fundo escuro) */
 .service-card--light {
@@ -1210,6 +1222,27 @@ h1, h2, h3, h4 {
 /* Botão dentro dos cards de produto (o service-card original não tem botão) */
 .products-grid .btn {
     margin-top: 18px;
+}
+
+/* Rótulo de subgrupo dentro de uma grade grande (Serviços, Produtos) —
+   quebra uma lista longa em blocos menores e mais fáceis de escanear,
+   sem remover nenhum item. */
+.group-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin: 0 0 20px;
+}
+
+.group-title:not(:first-child) {
+    margin-top: 48px;
+}
+
+.group-title--light {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* Destaque do pacote recomendado, reaproveitando o .compare-card padrão */
