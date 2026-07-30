@@ -561,10 +561,6 @@ h1, h2, h3, h4 {
     color: var(--color-text-light);
 }
 
-.edu-card__btn {
-    flex-shrink: 0;
-}
-
 /* ---------- 8. ESTRUTURA DE REDE (ícones compactos) ---------- */
 .structure-icons {
     display: flex;
@@ -1395,10 +1391,6 @@ h1, h2, h3, h4 {
         text-align: center;
         gap: 12px;
         padding: 28px 24px;
-    }
-
-    .edu-card__btn {
-        width: 100%;
     }
 
     .simulator-banner {
