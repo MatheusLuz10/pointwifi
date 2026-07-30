@@ -542,6 +542,10 @@ h1, h2, h3, h4 {
     padding: 28px 32px;
 }
 
+.edu-card + .edu-card {
+    margin-top: 16px;
+}
+
 .edu-card__icon {
     font-size: 32px;
     flex-shrink: 0;
@@ -632,14 +636,9 @@ h1, h2, h3, h4 {
     transform: scale(1.08);
 }
 
-.compare-card__icon {
-    font-size: 30px;
-    margin: 20px 28px 4px;
-}
-
 .compare-card__title {
     font-size: 20px;
-    margin: 0 28px 12px;
+    margin: 20px 28px 12px;
 }
 
 .compare-card__list {
@@ -653,15 +652,13 @@ h1, h2, h3, h4 {
 .compare-card__list li {
     font-size: 14px;
     color: var(--color-text-light);
-    padding-left: 16px;
-    position: relative;
+    display: flex;
 }
 
 .compare-card__list li::before {
     content: '—';
-    position: absolute;
-    left: 0;
     color: var(--color-blue);
+    flex-shrink: 0;
 }
 
 .compare-card__btn {
