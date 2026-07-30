@@ -380,7 +380,7 @@ h1, h2, h3, h4 {
 
 .hero__container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 60% 40%;
     align-items: center;
     gap: 60px;
     padding-top: 100px;
@@ -440,6 +440,9 @@ h1, h2, h3, h4 {
 
 .hero__image {
     width: 100%;
+    max-width: 430px;
+    margin-left: auto;
+    margin-right: auto;
     aspect-ratio: 941 / 1020;
     object-fit: cover;
     border-radius: var(--radius-lg);
