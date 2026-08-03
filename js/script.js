@@ -1,5 +1,5 @@
 /* =========================================================================
-   CONECTA WIFI - REDES & INFORMÁTICA
+   CONECTA REDE - REDES & INFORMÁTICA
    Script principal (JavaScript puro, sem dependências)
    ========================================================================= */
 
